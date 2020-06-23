@@ -105,6 +105,7 @@ const Grid = () => {
          return;
       }
       return () => clearInterval(runSim);
+      // eslint-disable-next-line
    }, [activeGrid, running]);
 
    return (
@@ -133,7 +134,7 @@ const Grid = () => {
                      style={{
                         width: 20,
                         height: 20,
-                        backgroundColor: grid[i][j] ? "red" : undefined,
+                        backgroundColor: grid[i][j] ? "dodgerblue" : undefined,
                         border: "solid .5px black",
                      }}
                   />
