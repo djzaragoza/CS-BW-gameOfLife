@@ -1,14 +1,14 @@
-import React from 'react';
-import './App.css';
-// import Nav fro './components/Nav';
-import Grid from './components/Grid';
+import React from "react";
+import "./App.css";
+import Nav from "./components/Nav";
+import Grid from "./components/Grid";
 
 const App = () => {
   return (
     <div className="wrapper">
-      {/* <div className="header">
+      <div className="header">
         <Nav />
-      </div> */}
+      </div>
 
       <Grid />
     </div>
