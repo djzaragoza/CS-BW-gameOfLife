@@ -1,2 +1,2 @@
 # CS-BW-gameOfLife
-Cellular Automata game buy the late John Conway 
+Cellular Automata game by the late John Conway 
