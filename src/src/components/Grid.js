@@ -1,8 +1,13 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import GridStyle from "./styles/GridStyle";
+//import Dropdown from './Dropdown';
 
+// grid boundaries 
 const rows = 25;
-const cols = 25;
+const cols = 45;
 
+
+// Eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent.  They all live in the neighborhood.
 const neighborhood = [
    [-1, -1],
    [-1, 0],
@@ -14,114 +19,39 @@ const neighborhood = [
    [1, 1],
 ];
 
+//setup an empty grid that can be used across multiple states
 const emptyGrid = () => {
-   const griddy = [];
+   const clearedGrid = [];
    for (let i = 0; i < rows; i++) {
-      griddy.push(Array.from(Array(cols), () => 0));
+      clearedGrid.push(Array.from(Array(cols), () => 0));
    }
-   return griddy;
+   return clearedGrid;
 };
 
-const Grid = () => {
-   const [grid, setGrid] = useState(() => {
-      return emptyGrid();
-   });
-
-   const [running, setRunning] = useState(false);
-   const [nextGen, setNextGen] = useState(false);
-   const [genCount, setGenCount] = useState(0);
-
-   const runRef = useRef(running);
-   runRef.current = running;
-
-   const genCountRef = useRef(genCount);
-   genCountRef.current = genCount;
-
-   const runSim = useCallback(() => {
-      const runSim = () => {
-         if (!runRef.current) {
-            return;
+//setup rules of the game
+const gameRules = (g) => {
+   let newGrid = emptyGrid();
+   for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+         let neighbors = 0;
+         neighborhood.forEach(([x, y]) => {
+            const blocX = i + x;
+            const blocY = j + y;
+            if (blockX >= 0 && blocX < rows && blocY >= 0 && blocY < cols) {
+               neighbors += g[blocX][blocY];
+            }
+         });
+         //once we have setup how the board works, we then implement the actual rules of the game in the following if/else statements
+         if (neighbors < 2 || neighbors > 3) {
+            newGrid[i][j] = 0;
+         } else if (g[i][j] === 1 && (neighbors === 2 || neighbors === 3)) {
+            newGrid[i][j] = 1;
+         } else if (g[i][j] === 0 && neighbors === 3) {
+            newGrid[i][j] = 1;
          }
       }
-
-      setGrid((g) => {
-         for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-               let neighbors = 0;
-               let newGrid = []
-               console.log(newGrid)
-               neighborhood.forEach(([x, y]) => {
-                  const blocX = i + x;
-                  const blocY = j + y;
-                  if (blocX >= 0 && blocX < rows && blocY >= 0 && blocY < rows) {
-                     neighbors += g[blocX][blocY];
-                  }
-               });
-               if (neighbors < 2 || neighbors > 3) {
-                  newGrid[i][j] = 0;
-               } else if (g[i][j] === 0 && neighbors === 3) {
-                  newGrid[i][j] = 1;
-               }
-            }
-         }
-      });
-      setTimeout(runSim, 100);
-      setGenCount(genCountRef.current + 1);
-   }, []);
-
-   return (
-      <>
-         <div
-            style={{
-               display: "grid",
-               gridTemplateColumns: `repeat(${cols}, 20px)`,
-            }}
-         >
-            {grid.map((row, i) =>
-               row.map((col, j) => (
-                  <div
-                     key={`${i}-${j}`}
-                     onClick={() => {
-                        const newGrid = grid.slice(0);
-                        //can alter newGrid make an immutable change and make a new grid for us, better than mutating state of original grid
-                        newGrid[i][j] = grid[i][j] ? 0 : 1;
-                        setGrid(newGrid);
-                     }}
-                     style={{
-                        width: 20,
-                        height: 20,
-                        backgroundColor: grid[i][j] ? "red" : undefined,
-                        border: "solid .5px black",
-                     }}
-                  />
-               ))
-            )}
-         </div>
-         <button
-            onClick={() => {
-               const griddy = [];
-               for (let i = 0; i < rows; i++) {
-                  griddy.push(
-                     Array.from(Array(cols), () => (Math.random() > 0.7 ? 1 : 0))
-                  );
-               }
-               setGrid(griddy);
-            }}
-         >
-            Random
-         </button>
-
-         <button
-            onClick={() => {
-               setRunning(running);
-               runSim()
-            }
-            }
-         >
-            {running ? "Stop" : "Start"}
-         </button>
-      </>
-   );
+   }
+   return newGrid;
 };
 
 export default Grid;
