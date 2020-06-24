@@ -8,9 +8,11 @@ const App = () => {
     <div className="wrapper">
       <div className="header">
         <Nav />
+
       </div>
 
       <Grid />
+
     </div>
   );
 };
