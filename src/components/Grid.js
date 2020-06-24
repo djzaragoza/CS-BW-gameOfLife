@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import GridStyle from "./styles/GridStyle";
-//import Dropdown from './Dropdown';
+
 
 // grid boundaries 
 const rows = 25;
