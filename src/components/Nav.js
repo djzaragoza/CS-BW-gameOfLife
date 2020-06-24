@@ -11,7 +11,7 @@ const RulesModal = ({ children, showRules, setShowRules }) => {
                type="button"
                onClick={() => setShowRules(false)}
             >
-               Close
+               CLOSE
             </button>
             <div className="nav-modal-body">{children}</div>
          </div>
@@ -30,7 +30,7 @@ const InfoModal = ({ children, showInfo, setShowInfo }) => {
                type="button"
                onClick={() => setShowInfo(false)}
             >
-               Close
+               CLOSE
             </button>
             <div className="nav-modal-body">{children}</div>
          </div>
@@ -48,7 +48,7 @@ function Nav() {
          <div className="nav-wrapper">
             <h1>Game of Life</h1>
             <button type="button" onClick={() => setShowRules(true)}>
-               Rules of the game
+               Game Rules
          </button>
             <RulesModal showRules={showRules} setShowRules={setShowRules}>
                <div>
@@ -78,11 +78,11 @@ function Nav() {
                      <li>Click the <strong>Start</strong> button to watch the cells evolve automatically</li>
                      <li>Click the <strong>Next Generation</strong> button to watch the cell evolve one generation at a time.</li>
                      <li>Click the <strong>Stop</strong> button to pause the game.</li>
-                     <li>Click the <strong>Clear</strong> butotn to clear the grid of all cells at any time.  This will reset the generation counter to ZERO.</li>
+                     <li>Click the <strong>Clear</strong> button to clear the grid of all cells at any time.  This will reset the generation counter to ZERO.</li>
                   </ul>
                </div>
             </RulesModal>
-            <button onClick={() => setShowInfo(true)}>What do the buttons do?</button>
+            <button onClick={() => setShowInfo(true)}>Buttons Config</button>
             <InfoModal showInfo={showInfo} setShowInfo={setShowInfo}>
                <div>
                   <h3>Buttons Config</h3>
