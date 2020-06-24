@@ -4,7 +4,7 @@ import GridStyle from "./styles/GridStyle";
 
 // grid boundaries 
 const rows = 25;
-const cols = 45;
+const cols = 25;
 
 
 // Eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent.  They all live in the neighborhood.
@@ -149,7 +149,7 @@ const Grid = () => {
                   const clearedGrid = [];
                   for (let i = 0; i < rows; i++) {
                      clearedGrid.push(
-                        Array.from(Array(cols), () => (Math.random() > .7 ? 1 : 0))
+                        Array.from(Array(cols), () => (Math.random() > 0.7 ? 1 : 0))
                      );
                   }
                   if (activeGrid === 1) {

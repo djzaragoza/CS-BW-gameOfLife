@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const NavStyle = styled.div`
 .nav-wrapper {
+   margin-top: 1rem;
    width: 100%;
    display: flex;
    flex-direction: row;
@@ -11,8 +12,8 @@ const NavStyle = styled.div`
    align-items: center;
 }
 
-.overlay {
-   z-index: 98;
+.nav-overlay {
+   z-index: 99;
    position: fixed;
    top 0;
    right: 0;
@@ -23,10 +24,10 @@ const NavStyle = styled.div`
    justify-content: center;
    height: 100%;
    width: 100%;
-   background-color: rgba(24, 24, 24, .3);
+   background-color: lightgrey;
 }
 
-.modal {
+.nav-modal {
    z-index: 99;
    /* everything below is optional styling */
    position: relative;
@@ -36,19 +37,19 @@ const NavStyle = styled.div`
    margin: 0 auto;
 }
 
-.close-modal {
+.close-nav-modal {
    position: absolute;
-   top: -24px;
+   top: 0px;
    right: 0;
-   padding: 5px;
    border: 0;
    -webkit-appearance: none;
    background: none;
    color: black;
+   font-weight: bold;
    cursor: pointer;
 }
 
-.modal-body {
+.nav-modal-body {
    padding: 20px 24px;
    border-radius: 4px;
    background-color: white;

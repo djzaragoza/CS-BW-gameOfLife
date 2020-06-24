@@ -16,8 +16,15 @@ const GridStyle = styled.div`
       //to add style in here
    }
 
+   .gen-count {
+      margin: 2%;
+      font-weight: bold;
+      text-align: center;
+   }
+
    .button-box {
       display: flex;
+      flex-wrap: wrap;
       flex-direction: row;
       align-items: center;
       justify-content: center;
@@ -29,16 +36,12 @@ const GridStyle = styled.div`
       }
    }
 
-   p {
-      font-weight: bold;
-   }
-
    @media only screen and (max-width: 600px) {
       .button-box {
          flex-wrap: wrap;
       }
    }
 
-   `;
+`;
 
 export default GridStyle;
