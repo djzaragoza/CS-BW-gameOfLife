@@ -4,7 +4,7 @@ import GridStyle from "./styles/GridStyle";
 
 // grid boundaries 
 const rows = 25;
-const cols = 25;
+const cols = 50;
 
 
 // Eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent.  They all live in the neighborhood.
