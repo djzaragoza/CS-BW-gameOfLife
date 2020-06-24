@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavStyle from './styles/NavStyle';
 
 const RulesModal = ({ children, showRules, setShowRules }) => {
+   
    const rulesContent = showRules && (
       <div className="overlay">
          <div className="modal">
