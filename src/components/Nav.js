@@ -48,7 +48,7 @@ function Nav() {
          <div className="nav-wrapper">
             <h1>Game of Life</h1>
             <button type="button" onClick={() => setShowRules(true)}>
-               Game Rules
+               Rules of the game
          </button>
             <RulesModal showRules={showRules} setShowRules={setShowRules}>
                <div>
