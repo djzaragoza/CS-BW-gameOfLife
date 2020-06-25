@@ -192,8 +192,8 @@ const Grid = (props) => {
                Clear
             </button>
          </div>
-         <div className="pattern-button-box">
-            <button
+         <div className="button-box">
+            {/* <button
                onClick={() => {
                   const newGrid = Array.from(grid);
                   newGrid[1][3] = 1;
@@ -230,7 +230,7 @@ const Grid = (props) => {
                }}
             >
                Spaceship
-            </button>
+            </button> */}
             <button
                onClick={() => {
                   const clearedGrid = [];

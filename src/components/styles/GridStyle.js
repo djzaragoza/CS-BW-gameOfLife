@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 const GridStyle = styled.div`
+
    display: flex;
    flex-direction: column;
    text-align: center;
+   background-color: #D6DBDF;
 
    .grid-wrapper {
       display: flex;
@@ -17,7 +19,7 @@ const GridStyle = styled.div`
    }
 
    .gen-count {
-      margin: 2%;
+      margin: 2.5%;
       font-weight: bold;
       text-align: center;
    }
@@ -30,13 +32,15 @@ const GridStyle = styled.div`
       justify-content: center;
 
       button {
-         border-radius: 5px;
-         margin: 10px;
-         padding: 15px;
+         border-radius: 12px;
+         margin: 8px;
+         padding: 10px;
+         background-color: dodgerblue;
+         color: white;
       }
    }
 
-   @media only screen and (max-width: 600px) {
+   @media only screen and (max-width: 550px) {
       .button-box {
          flex-wrap: wrap;
       }

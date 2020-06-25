@@ -46,7 +46,7 @@ function Nav() {
    return (
       <NavStyle>
          <div className="nav-wrapper">
-            <h1>Game of Life</h1>
+            <h1>The Game of Life (1937 - 2020)</h1>
             <button type="button" onClick={() => setShowRules(true)}>
                Rules of the game
          </button>

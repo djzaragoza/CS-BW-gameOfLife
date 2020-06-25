@@ -3,6 +3,10 @@ import styled from 'styled-components';
 //styles for the modal buttons and nav bar
 
 const NavStyle = styled.div`
+header {
+   background-color: lightgrey;
+}
+
 .nav-wrapper {
    margin-top: 1rem;
    width: 100%;
@@ -61,7 +65,7 @@ button {
    padding: 15px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 550px) {
    .nav-wrapper {
       flex-wrap: wrap;
    }
