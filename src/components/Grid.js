@@ -7,7 +7,7 @@ const rows = 25;
 const cols = 25;
 
 //colors of cells
-const color = [Math.floor(Math.random() * 9)];
+// const color = [Math.floor(Math.random() * 9)];
 
 // Eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent.  They all live in the neighborhood.
 const neighborhood = [
@@ -89,6 +89,9 @@ const Grid = (props) => {
       if (activeGrid === 1) {
          setFrameTwo(gameRules(frameOne));
          setActiveGrid(2);
+      } else {
+         setFrameOne(gameRules(frameTwo));
+         setActiveGrid(1);
       }
    };
 
