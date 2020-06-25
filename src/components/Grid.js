@@ -4,8 +4,10 @@ import GridStyle from "./styles/GridStyle";
 
 // grid boundaries 
 const rows = 25;
-const cols = 50;
+const cols = 25;
 
+//colors of cells
+const color = [Math.floor(Math.random() * 9)];
 
 // Eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent.  They all live in the neighborhood.
 const neighborhood = [
@@ -31,7 +33,7 @@ const emptyGrid = () => {
 //setup rules of the game
 const gameRules = (g) => {
    let newGrid = emptyGrid();
-   for (let i = 0; i < rows; i++) {
+   for (let i = 0; i < rows; i++) { // nested for loops to iterate over the neighborhood cells
       for (let j = 0; j < cols; j++) {
          let neighbors = 0;
          neighborhood.forEach(([x, y]) => {
@@ -54,7 +56,7 @@ const gameRules = (g) => {
    return newGrid;
 };
 
-const Grid = () => {
+const Grid = (props) => {
    //initial grid state one
    const [frameOne, setFrameOne] = useState(() => {
       return emptyGrid();
@@ -83,10 +85,10 @@ const Grid = () => {
 
    //Double buffer == when the active grid is 1, we set frameone's state into the gamerules function, and set that into frameTwo
    const nextGen = () => {
+      setGenCount(genCount + 1);
       if (activeGrid === 1) {
          setFrameTwo(gameRules(frameOne));
          setActiveGrid(2);
-         setGenCount(genCount + 1);
       }
    };
 
@@ -120,8 +122,8 @@ const Grid = () => {
             {grid.map((row, i) =>
                row.map((col, j) => (
                   <div
+                     // className="grid-boxes"
                      key={`${i}-${j}`}
-                     className="grid-boxes"
                      onClick={() => {
                         const newGrid = Array.from(grid);
                         newGrid[i][j] = grid[i][j] ? 0 : 1;
@@ -141,9 +143,91 @@ const Grid = () => {
                ))
             )}
          </div>
+         <h3 className="gen-count">Generation Count: {genCount}</h3>
          <div className="button-box">
             {/* <Dropdown /> */}
 
+            <button
+               onClick={() => {
+                  setRunning(!running);
+               }}
+            >
+               {running ? "Stop" : "Start"}
+            </button>
+
+            <button
+               onClick={() => {
+                  setSpeed(100);
+               }}
+            >
+               Faster
+            </button>
+
+            <button
+               onClick={() => {
+                  setSpeed(1000);
+               }}
+            >
+               Slower
+            </button>
+
+            <button
+               onClick={() => {
+                  nextGen();
+               }}
+            >
+               Generation One
+            </button>
+
+            <button
+               onClick={() => {
+                  setFrameOne(emptyGrid());
+                  setFrameTwo(emptyGrid());
+                  setGenCount(0);
+               }}
+            >
+               Clear
+            </button>
+         </div>
+         <div className="pattern-button-box">
+            <button
+               onClick={() => {
+                  const newGrid = Array.from(grid);
+                  newGrid[1][3] = 1;
+                  newGrid[2][3] = 1;
+                  newGrid[3][3] = 1;
+                  newGrid[3][2] = 1;
+                  newGrid[2][1] = 1;
+                  if (activeGrid === 1) {
+                     setFrameOne(newGrid);
+                  } else {
+                     setFrameTwo(newGrid);
+                  }
+               }}
+            >
+               Glider
+            </button>
+            <button
+               onClick={() => {
+                  const newGrid = Array.from(grid);
+                  newGrid[8][24] = 1;
+                  newGrid[10][24] = 1;
+                  newGrid[11][23] = 1;
+                  newGrid[11][22] = 1;
+                  newGrid[11][21] = 1;
+                  newGrid[11][20] = 1;
+                  newGrid[10][20] = 1;
+                  newGrid[9][20] = 1;
+                  newGrid[8][21] = 1;
+                  if (activeGrid === 1) {
+                     setFrameOne(newGrid);
+                  } else {
+                     setFrameTwo(newGrid);
+                  }
+               }}
+            >
+               Spaceship
+            </button>
             <button
                onClick={() => {
                   const clearedGrid = [];
@@ -161,47 +245,10 @@ const Grid = () => {
             >
                Random
             </button>
-            <button
-               onClick={() => {
-                  setRunning(!running);
-               }}
-            >
-               {running ? "Stop" : "Start"}
-            </button>
-            <button
-               onClick={() => {
-                  setSpeed(100);
-               }}
-            >
-               Speed Up
-            </button>
-            <button
-               onClick={() => {
-                  setSpeed(1000);
-               }}
-            >
-               Slow Down
-            </button>
-            <button
-               onClick={() => {
-                  nextGen();
-               }}
-            >
-               One Generation
-            </button>
-            <button
-               onClick={() => {
-                  setFrameOne(emptyGrid());
-                  setFrameTwo(emptyGrid());
-                  setGenCount(0);
-               }}
-            >
-               Clear
-            </button>
-            <p>Generation Count: {genCount}</p>
          </div>
       </GridStyle>
    );
 };
+
 
 export default Grid;
