@@ -179,7 +179,7 @@ const Grid = (props) => {
                   nextGen();
                }}
             >
-               Generation One
+               Gen X
             </button>
 
             <button
